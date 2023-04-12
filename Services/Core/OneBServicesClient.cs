@@ -26,7 +26,7 @@ namespace OneB
         public async Task<TResultType> Send<TResultType>(ICommand command) where TResultType : IMessage<TResultType>, new()
         {
             Request request = command.GetBinRequest();
-            string uri = BaseURL[Environment.ToString()] + "/" + request.Service + "/" + request.Param;
+            string uri = BaseURL[Environment.ToString()] + "/" + request.Service;
 
             UnityWebRequest unityWebRequest = new UnityWebRequest(uri, request.RequestVerb.ToString());
             if (request.RequestVerb == RequestVerb.POST)
