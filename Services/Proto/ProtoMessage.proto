@@ -1,0 +1,124 @@
+syntax = "proto3";
+
+package OneB;
+
+message AuthLogin {
+   string playerId            = 1;
+   string secretKey           = 2;
+   string gameId              = 3;
+   string gameVersion         = 4;
+   string playerName          = 5;
+   string country             = 6;
+   string platform            = 7;
+}
+message AuthResponse {
+   string accessToken         = 1;
+}
+message ProtoMessage {
+   Service service            = 1;
+   optional string functionName        = 2;
+   optional string namespace           = 4;
+   optional bytes data       	         = 3;
+}
+
+message InboxList {
+   message Conditions {
+         string value = 1;
+         string operator = 2;
+         string fieldName = 3;
+   }
+
+   message Gifts {
+         string itemId = 1;
+         uint32 amount = 2;
+   }
+
+   message Items {
+         string content = 1;
+         repeated Conditions conditions = 2;
+         repeated Gifts gifts = 3;
+         uint32 expiryDate = 4;
+         string id = 5;
+         string title = 6;
+         bool canClaim = 7;
+   }
+
+   repeated Items items = 1;
+}
+message InboxClaimInput {
+   repeated string inboxList = 1;
+}
+message InboxClaimOutput {
+   message Inventory {
+         string itemId = 1;
+         uint32 amount = 2;
+   }
+   repeated Inventory inventory = 1;
+   repeated string inboxList    = 2;
+}
+message InboxDeleteInput {
+   repeated string inboxList = 1;
+}
+message InboxDeleteOutput {
+   repeated string inboxList = 1;
+}
+
+message GetTopLeaderboardInput {
+   optional string name = 1;
+   uint32 offset = 2;
+   string country = 3;
+   optional uint32 count = 4;
+   bool reverseOrder = 5;
+}
+
+message TopLeaderboard {
+message Items {
+   string playerName = 1;
+   string playerId = 2;
+   string country = 3;
+   uint32 score = 4;
+   uint32 rank = 5;
+   }
+
+   repeated Items items = 1;
+}
+
+message GetMyRankLeaderboardInput {
+   string name = 1;
+   string country = 2;
+   bool reverseOrder = 3;
+}
+
+message GetMyRankLeaderboardOutput {
+   uint32 rank = 1;
+   uint32 minRank = 2;
+   uint32 score = 3;
+   string playerName = 4;
+   string playerId = 5;
+   string country = 6;
+}
+  
+message UpdateScoreLeaderboardInput {
+   message Items {
+   uint32 score = 1;
+   string option = 2;
+   string country = 3;
+   string name = 4;
+   }
+   repeated Items items = 1;
+}
+
+message UpdateScoreLeaderboardOutput {
+   string status = 1;
+}
+message Empty {
+   
+}
+enum Service {
+   NOT_USE                    = 0;
+   BLUEPRINT                  = 1;
+   PLAYER                     = 2;
+   GAMESCRIPT                 = 3;
+   INBOX                      = 4;
+   LEADERBOARD                = 5;
+}
