@@ -9,9 +9,9 @@ namespace OneB
             Data = data;
             FunctionName = "token";
         }
-        public override Request GetBinRequest()
+        public override Request GetRequest()
         {
-            var request = base.GetBinRequest();
+            var request = base.GetRequest();
             request.Service = "bin/token";
             return request;
         }

@@ -25,7 +25,7 @@ namespace OneB
         public ApiType ApiType = ApiType.BINARY;
         public async Task<TResultType> Send<TResultType>(ICommand command) where TResultType : IMessage<TResultType>, new()
         {
-            Request request = command.GetBinRequest();
+            Request request = command.GetRequest();
             string uri = BaseURL[Environment.ToString()] + "/" + request.Service;
 
             UnityWebRequest unityWebRequest = new UnityWebRequest(uri, request.RequestVerb.ToString());
