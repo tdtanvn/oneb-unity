@@ -42,14 +42,16 @@ namespace OneB
             {
                 await Task.Yield();
             }
-
             if (unityWebRequest.result == UnityWebRequest.Result.Success)
             {
-                return serializationOption.Deserialize<TResultType>(unityWebRequest.downloadHandler.data);
+                var result = unityWebRequest.downloadHandler.data;
+                unityWebRequest.Dispose();
+                return serializationOption.Deserialize<TResultType>(result);
             }
             var error = unityWebRequest.downloadHandler.text;
+            unityWebRequest.Dispose();
             throw new Exception(error);
-
+           
         }
         public async Task<AuthResponse> Login(string playerId, string secretKey, string playerName = "", string country = "")
         {
