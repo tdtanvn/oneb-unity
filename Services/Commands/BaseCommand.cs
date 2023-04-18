@@ -16,7 +16,6 @@ namespace OneB
         public virtual Request GetRequest()
         {
             var protoMessage = new ProtoMessage { FunctionName = this.FunctionName, Service = serviceName, Data = Data != null ? Data.ToByteString() : ByteString.Empty, Namespace = ns };
-            Debug.Log(protoMessage);
             return new() { RequestVerb = RequestVerb.POST, Service = "bin", Body = protoMessage.ToByteArray() };
         }
     }
