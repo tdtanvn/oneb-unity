@@ -23,8 +23,11 @@ namespace OneB
         public GameEnvironment Environment = GameEnvironment.DEVELOPMENT;
         public string GameVersion = "";
         public ApiType ApiType = ApiType.BINARY;
+
+        public bool DebugLogEnabled = false;
         public async Task<TResultType> Send<TResultType>(ICommand command) where TResultType : IMessage<TResultType>, new()
         {
+            command.SetDebugLogEnabled(DebugLogEnabled);
             Request request = command.GetRequest();
             string uri = BaseURL[Environment.ToString()] + "/" + request.Service;
 
@@ -44,9 +47,13 @@ namespace OneB
             }
             if (unityWebRequest.result == UnityWebRequest.Result.Success)
             {
-                var result = unityWebRequest.downloadHandler.data;
+                var data = unityWebRequest.downloadHandler.data;
                 unityWebRequest.Dispose();
-                return serializationOption.Deserialize<TResultType>(result);
+                var result = serializationOption.Deserialize<TResultType>(data);
+                if(DebugLogEnabled){
+                    Debug.LogFormat("Response: {0}",result);
+                }
+                return result;
             }
             var error = unityWebRequest.downloadHandler.text;
             unityWebRequest.Dispose();

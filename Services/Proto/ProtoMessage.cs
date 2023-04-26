@@ -61,9 +61,9 @@ namespace OneB {
             "cmVMZWFkZXJib2FyZElucHV0Lkl0ZW1zGkUKBUl0ZW1zEg0KBXNjb3JlGAEg",
             "ASgNEg4KBm9wdGlvbhgCIAEoCRIPCgdjb3VudHJ5GAMgASgJEgwKBG5hbWUY",
             "BCABKAkiLgocVXBkYXRlU2NvcmVMZWFkZXJib2FyZE91dHB1dBIOCgZzdGF0",
-            "dXMYASABKAkiBwoFRW1wdHkqXQoHU2VydmljZRILCgdOT1RfVVNFEAASDQoJ",
-            "QkxVRVBSSU5UEAESCgoGUExBWUVSEAISDgoKR0FNRVNDUklQVBADEgkKBUlO",
-            "Qk9YEAQSDwoLTEVBREVSQk9BUkQQBWIGcHJvdG8z"));
+            "dXMYASABKAkiBwoFRW1wdHkqWgoHU2VydmljZRIICgRBVVRIEAASDQoJQkxV",
+            "RVBSSU5UEAESCgoGUExBWUVSEAISDgoKR0FNRVNDUklQVBADEgkKBUlOQk9Y",
+            "EAQSDwoLTEVBREVSQk9BUkQQBWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::OneB.Service), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -91,7 +91,7 @@ namespace OneB {
   }
   #region Enums
   public enum Service {
-    [pbr::OriginalName("NOT_USE")] NotUse = 0,
+    [pbr::OriginalName("AUTH")] Auth = 0,
     [pbr::OriginalName("BLUEPRINT")] Blueprint = 1,
     [pbr::OriginalName("PLAYER")] Player = 2,
     [pbr::OriginalName("GAMESCRIPT")] Gamescript = 3,
@@ -751,7 +751,7 @@ namespace OneB {
 
     /// <summary>Field number for the "service" field.</summary>
     public const int ServiceFieldNumber = 1;
-    private global::OneB.Service service_ = global::OneB.Service.NotUse;
+    private global::OneB.Service service_ = global::OneB.Service.Auth;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::OneB.Service Service {
@@ -859,7 +859,7 @@ namespace OneB {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (Service != global::OneB.Service.NotUse) hash ^= Service.GetHashCode();
+      if (Service != global::OneB.Service.Auth) hash ^= Service.GetHashCode();
       if (HasFunctionName) hash ^= FunctionName.GetHashCode();
       if (HasNamespace) hash ^= Namespace.GetHashCode();
       if (HasData) hash ^= Data.GetHashCode();
@@ -881,7 +881,7 @@ namespace OneB {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (Service != global::OneB.Service.NotUse) {
+      if (Service != global::OneB.Service.Auth) {
         output.WriteRawTag(8);
         output.WriteEnum((int) Service);
       }
@@ -907,7 +907,7 @@ namespace OneB {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Service != global::OneB.Service.NotUse) {
+      if (Service != global::OneB.Service.Auth) {
         output.WriteRawTag(8);
         output.WriteEnum((int) Service);
       }
@@ -933,7 +933,7 @@ namespace OneB {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (Service != global::OneB.Service.NotUse) {
+      if (Service != global::OneB.Service.Auth) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Service);
       }
       if (HasFunctionName) {
@@ -957,7 +957,7 @@ namespace OneB {
       if (other == null) {
         return;
       }
-      if (other.Service != global::OneB.Service.NotUse) {
+      if (other.Service != global::OneB.Service.Auth) {
         Service = other.Service;
       }
       if (other.HasFunctionName) {

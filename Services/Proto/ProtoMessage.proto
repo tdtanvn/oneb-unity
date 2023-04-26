@@ -115,7 +115,7 @@ message Empty {
    
 }
 enum Service {
-   NOT_USE                    = 0;
+   AUTH                       = 0;
    BLUEPRINT                  = 1;
    PLAYER                     = 2;
    GAMESCRIPT                 = 3;
