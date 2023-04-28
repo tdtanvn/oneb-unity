@@ -25,7 +25,7 @@ namespace OneB
             {
                 Debug.LogFormat("Service: '{0}', function: '{1}', data: '{2}'", serviceName, FunctionName, Data);
             }
-            return new() { RequestVerb = RequestVerb.POST, Service = "bin", Body = protoMessage.ToByteArray() };
+            return new() { RequestVerb = RequestVerb.POST, Body = protoMessage.ToByteArray() };
         }
     }
 }

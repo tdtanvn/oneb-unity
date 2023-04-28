@@ -17,7 +17,7 @@ namespace OneB
                                                         {"UAT", "https://uat.api.oneb.tech" },
                                                         {"PRODUCTION", "https://prod.api.oneb.tech" }
                                                     };
-        private string AccessToken;
+        public string AccessToken;
         private ISerializationOption serializationOption = new ProtoSerializationOption();
         public string GameId;
         public GameEnvironment Environment = GameEnvironment.DEVELOPMENT;
@@ -29,8 +29,11 @@ namespace OneB
         {
             command.SetDebugLogEnabled(DebugLogEnabled);
             Request request = command.GetRequest();
-            string uri = BaseURL[Environment.ToString()] + "/" + request.Service;
-
+            string uri = BaseURL[Environment.ToString()] + "/bin/";
+            if(string.IsNullOrEmpty(this.AccessToken))
+            {
+                uri += "p";
+            }
             UnityWebRequest unityWebRequest = new UnityWebRequest(uri, request.RequestVerb.ToString());
             if (request.RequestVerb == RequestVerb.POST)
             {
@@ -40,6 +43,8 @@ namespace OneB
             unityWebRequest.SetRequestHeader("Content-Type", serializationOption.ContentType);
             unityWebRequest.SetRequestHeader("Authorization", $"Bearer {AccessToken}");
             unityWebRequest.SetRequestHeader("X-API-Version", X_API_VERSION);
+            unityWebRequest.SetRequestHeader("gameId", GameId);
+            unityWebRequest.SetRequestHeader("gameVer", GameVersion);
             var operation = unityWebRequest.SendWebRequest();
             while (!operation.isDone)
             {
@@ -50,15 +55,16 @@ namespace OneB
                 var data = unityWebRequest.downloadHandler.data;
                 unityWebRequest.Dispose();
                 var result = serializationOption.Deserialize<TResultType>(data);
-                if(DebugLogEnabled){
-                    Debug.LogFormat("Response: {0}",result);
+                if (DebugLogEnabled)
+                {
+                    Debug.LogFormat("Response: {0}", result);
                 }
                 return result;
             }
             var error = unityWebRequest.downloadHandler.text;
             unityWebRequest.Dispose();
             throw new Exception(error);
-           
+
         }
         public async Task<AuthResponse> Login(string playerId, string secretKey, string playerName = "", string country = "")
         {
