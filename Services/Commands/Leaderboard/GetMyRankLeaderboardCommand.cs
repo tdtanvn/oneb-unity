@@ -11,7 +11,7 @@ namespace OneB
             serviceName = Service.Leaderboard;
         }
     }
-    public class GetMyRankLeaderboardCommand : ClaimInboxCommand<GetMyRankLeaderboardInput>
+    public class GetMyRankLeaderboardCommand : GetMyRankLeaderboardCommand<GetMyRankLeaderboardInput>
     {
         public GetMyRankLeaderboardCommand(GetMyRankLeaderboardInput input) : base(input)
         {

@@ -11,7 +11,7 @@ namespace OneB
             serviceName = Service.Leaderboard;
         }
     }
-    public class GetTopScoreLeaderboardCommand : ClaimInboxCommand<GetTopLeaderboardInput>
+    public class GetTopScoreLeaderboardCommand : GetTopScoreLeaderboardCommand<GetTopLeaderboardInput>
     {
         public GetTopScoreLeaderboardCommand(GetTopLeaderboardInput input) : base(input)
         {
