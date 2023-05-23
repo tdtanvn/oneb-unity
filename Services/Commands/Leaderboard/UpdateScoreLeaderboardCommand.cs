@@ -9,7 +9,7 @@ namespace OneB
         {
             FunctionName = "UpdateScore";
             Data = input;
-            serviceName = Service.Inbox;
+            serviceName = Service.Leaderboard;
         }
     }
     public class UpdateScoreLeaderboardCommand : UpdateScoreLeaderboardCommand<UpdateScoreLeaderboardInput>
