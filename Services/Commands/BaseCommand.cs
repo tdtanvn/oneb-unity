@@ -20,7 +20,13 @@ namespace OneB
         }
         public virtual Request GetRequest()
         {
-            var protoMessage = new ProtoMessage { FunctionName = this.FunctionName, Service = serviceName, Data = Data != null ? Data.ToByteString() : ByteString.Empty, Namespace = ns };
+            var protoMessage = new ProtoMessage
+            {
+                FunctionName = Utils.GetSHA256Hash(this.FunctionName),
+                Service = serviceName,
+                Data = Data != null ? Data.ToByteString() : ByteString.Empty,
+                Namespace = !string.IsNullOrEmpty(ns) ? Utils.GetSHA256Hash(this.ns) : ns
+            };
             if (isDebug)
             {
                 Debug.LogFormat("Service: '{0}', function: '{1}', data: '{2}'", serviceName, FunctionName, Data);
