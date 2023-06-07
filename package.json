@@ -1,6 +1,6 @@
 {
   "name": "oneb.services",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "displayName": "OneB Services",
   "description": "OneBServices Client for Unity engine",
   "unity": "2019.1",
